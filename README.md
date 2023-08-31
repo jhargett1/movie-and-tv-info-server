@@ -42,6 +42,18 @@ API_KEY=your_api_key_here
 
 Replace `your_api_key_here` with your actual API key for the Utelly API.
 
+If you don't have an API key, you can obtain one by following these steps:
+
+1. Visit the [Utelly RapidAPI page](https://rapidapi.com/utelly/api/utelly) and sign up for an account or log in if you already have one.
+
+2. Once logged in, navigate to the [Utelly API](https://rapidapi.com/utelly/api/utelly) page.
+
+3. Click on the "Pricing" tab to view available plans and pricing. Choose the plan that suits your needs (there's a free plan available).
+
+4. After selecting a plan, you will be able to access your API key. Copy the API key provided.
+
+5. Return to your project's `.env` file and replace `your_api_key_here` with the API key you obtained from Utelly.
+
 
 ## Starting the Server
 
