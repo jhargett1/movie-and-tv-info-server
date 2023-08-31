@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Metadata and title for the HTML page -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie and TV Show Information</title>
+
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Old+Permic&family=Patua+One&display=swap" rel="stylesheet">
+
+  <!-- Include custom CSS from "styles/main.css" -->
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
+</head>
+
+<body>
+  <!-- Main content of the HTML page -->
+  <div class="wholeBody">
+  <div class="navBar">
+    <!-- Navigation bar containing a title and search form -->
+    <h1 class="titleBar"> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="white" class="bi bi-camera-reels" viewBox="0 0 16 16">
+      <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0z"/>
+      <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7zm6 8.73V7.27l-3.5 1.555v4.35l3.5 1.556zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1z"/>
+      <path d="M9 6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM7 3a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+    </svg> Movie and TV Show Information <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:white}</style><path d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg></h1>
+    
+    <!-- Search form -->
+    <form method="POST" action="/search">
+        <!-- Input group for search input -->
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+                    <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"></path>
+                </svg>
+            </span>
+            <!-- Label for the input field -->
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="searchTerm">Movie or Show Title:</label>
+            </div>
+            <!-- Input field for searching -->
+            <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Search for a movie or TV show here" autocomplete="off">
+        </div>
+
+      <!-- Submit button for the search form -->
+      <button type="submit" class="btn btn-primary" id="searchButton">Search</button>
+    </form>
+  </div>
+
+  <!-- Loader section, displayed when loading -->
+  <div class="loader">
+    <% if (loading) { %>
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>  
+    </div>
+    <% } %>
+    </div>
+    <hr>  
+
+  <!-- Container for search results -->
+  <div class="container mt-5 resultBar">
+    <!-- Display search results if available -->
+    <% if (results) { %>
+      <!-- Header for search results -->
+    <h2>Search Results for "<%= searchTerm %>"</h2>
+
+    <!-- Loop through each result and display it -->
+    <% results.forEach(result => { %>
+    <!-- Card to display a search result -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <!-- Title of the movie or show -->
+        <h3 class="card-title"><%= result.title %></h3>
+
+        <!-- Check if there's a poster for the result -->
+        <% if (result.poster) { %>
+            <!-- Link to IMDb and image preview -->
+            <a href="<%= result.external_ids.imdb.url %>" target="_blank">
+                <img src="<%= result.poster %>" class="card-img-top" alt="Preview">
+            </a>
+            <!-- Button to toggle show details -->
+            <button type="button" class="collapsible">View Show Details</button>
+            <!-- Details section -->
+            <div id="collapsingDetails" class="collapse">
+                <!-- Display starring actors -->
+                <p>Starring: <%= result.actors %></p>
+                <!-- Display IMDb rating -->
+                <p>IMDb Rating: <%= result.rating %></p>
+                <!-- Display release date -->
+                <p>Release Date: <%= result.releaseDate %></p>
+            </div>
+        <% } else { %>
+        <!-- Display message when no preview is provided -->
+        <p>No preview provided</p>
+        <% } %>
+
+        <!-- Check if there are additional locations -->
+        <% if (result.locations && result.locations.length > 0) { %>
+        <!-- List of additional locations -->
+        <ul class="locationItems">
+          <% result.locations.forEach(location => { %>
+          <li>
+            <!-- Check if there's an icon and a URL for the location -->
+            <% if (location.icon && location.url) { %>
+            <!-- Display location icon as a link -->
+            <a href="<%= location.url %>" target="_blank">
+              <img src="<%= location.icon %>" alt="<%= location.display_name %> Icon">
+            </a>
+            <% } %>
+          </li>
+          <% }) %>
+        </ul>
+        <% } else { %>
+        <!-- Display message when no additional locations are available -->          
+        <p>No additional locations available</p>
+        <% } %>
+
+      </div>
+      <!-- End of result card -->
+    </div>
+
+    <% }) %>
+
+    <!-- End of loop for results -->
+
+    <% } %>
+
+    <!-- Display error message if there's an error -->
+    <% if (error) { %>
+    <p class="text-danger">Error: <%= error %></p>
+    <% } %>
+
+  </div>
+  </div>
+
+  <!-- JavaScript code for handling collapsible sections and loader -->
+  <script>
+    // JavaScript for toggling collapsible sections
+    let coll = document.getElementsByClassName("collapsible");
+    let i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+
+    // JavaScript for hiding the loader when the page loads
+    const loader = document.querySelector(".loader");
+
+    window.addEventListener("load", function() {
+      loader.style.display = "none";
+    });
+    
+    // JavaScript for displaying the loader when the search button is clicked
+    const searchButton = document.querySelector("#searchButton");
+    
+    searchButton.addEventListener("click", function() {
+      loader.style.display = "block";
+    });
+  </script>
+</body>
+
+</html>

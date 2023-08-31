@@ -1,0 +1,187 @@
+/* CSS for styling the navigation bar */
+.navBar {
+  text-align: center; /* Center text in the navigation bar */
+  background-color: #FF9B50; /* Set background color */
+}
+
+/* Styling for image previews */
+#preview {
+  max-width: 100%; /* Ensure images fit within their containers */
+}
+
+/* Styling for centered headings */
+#resultsH2 {
+  text-align: center;
+}
+
+/* Styling for list items */
+ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%; /* Add spacing around list items */
+  list-style: none; /* Remove list bullets */
+  justify-content: center;
+}
+
+/* Styling for result header with ellipsis for overflow */
+#resultHeader {
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Styling for paragraphs within .results class */
+.results p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling for form within .navBar */
+.navBar form {
+  justify-content: center; /* Center form inputs horizontally */
+}
+
+/* Styling for card images */
+.card-img-top {
+  max-height: 250px; /* Limit image height */
+  object-fit: contain; /* Keep image aspect ratio while containing within the container */
+}
+
+/* Styling for links within paragraphs */
+p > a {
+  display: flex;
+  justify-content: center; /* Center links horizontally */
+}
+
+/* Styling for paragraphs within .card-body */
+.card-body p {
+  display: flex;
+  justify-content: center; /* Center paragraphs horizontally */
+  margin-top: 2%; /* Add spacing at the top */
+}
+
+/* Styling for links within list items */
+li > a {
+  display: flex;
+  justify-content: center; /* Center links horizontally */
+}
+
+/* Styling for collapsible button */
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Styling for active collapsible button and hover effect */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Styling for collapsible content (hidden by default) */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* Styling for search button */
+#searchButton {
+  margin-top: 2%;
+}
+
+/* Styling for loader animation */
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+/* Keyframes for loader spin animation */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Styling for Bootstrap spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Styling for primary buttons and hover effect */
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #E25E3E !important;
+  border-color: #E25E3E;
+  font-family: 'Noto Sans Old Permic', sans-serif;
+  margin-bottom: 1rem;
+}
+
+/* Styling for the title bar */
+.titleBar {
+  font-family: 'Patua One', cursive;
+  color: white;
+}
+
+/* Styling for the result bar */
+.resultBar {
+  background-color: #C63D2F;
+  font-family: 'Patua One', cursive;
+  color: white;
+}
+
+/* Styling for the background image */
+html {
+  background-color: #C63D2F;
+  background-image: url(../images/movies.jpg); /* Set background image */
+  background-size: cover; /* Resize the image to cover the entire container */
+  background-repeat: no-repeat; /* Prevent image from repeating */
+  background-position: center 200px; /* Adjust background position */
+}
+
+/* Styling for card titles */
+.card-title {
+  color: black;
+}
+
+/* Styling for collapsed content */
+.collapse {
+  color: black;
+  font-family: 'Noto Sans Old Permic', sans-serif;
+  background-color: #ccc;
+}
+
+/* Styling for input groups */
+.input-group {
+  margin-top: 2rem; /* Add spacing at the top */
+}
+
+/* Styling for the entire page body */
+.wholeBody {
+  background-color: #444;
+}
